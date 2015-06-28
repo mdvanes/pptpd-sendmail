@@ -1,6 +1,7 @@
 /* use this file to test sendmail and options */
 #include <stdio.h>
 #include <string.h>
+#include <unistd.h>
 
 static void readProperties() {
     printf("test: readProperties\n");
@@ -8,14 +9,22 @@ static void readProperties() {
 
     /* TODO test if file exists */
 
-    char textIn[100]; 
+    char textIn[100];
 
-    FILE *fp;
-    fp=fopen("foo.properties", "r");
-    fscanf(fp, "%[^\n]\n", textIn);
-    fclose(fp);
+    char fname[] = "pptpd-sendmail.properties";
 
-    printf("test: readProperties result: %s\n", textIn);
+    if( access( fname, F_OK ) != -1 ) {
+        // file exists
+        FILE *fp;
+        fp=fopen(fname, "r");
+        fscanf(fp, "%[^\n]\n", textIn);
+        fclose(fp);
+
+        printf("test: readProperties result: %s\n", textIn);
+    } else {
+        // file doesn't exist
+        printf("test: file readProperties does not exist!\n");
+    }
 }
 
 static void testSendMail()

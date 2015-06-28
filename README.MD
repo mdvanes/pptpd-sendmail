@@ -42,6 +42,13 @@ Go to ```testing-sendmail``` and run ```make```. Then run ```./test```.
 ## installation
 
 Follow instructions of pppd plugin installation.
+Make sure that pptpd-sendmail.properties exists in the same dir as pptpd-sendmail.so
+
+pptpd-sendmail.properties should contain the "to address":
+
+```
+to=example2@example.com
+```
 
 
 # TODO
@@ -53,21 +60,8 @@ Follow instructions of pppd plugin installation.
 * Git keyword expansion http://git-memo.readthedocs.org/en/latest/git_archive.html
 
 
-```
-typedef struct {
-    char    *name;      /* name of the option */
-    enum opt_type type;
-    void    *addr;
-    char    *description;
-    unsigned int flags;
-    void    *addr2;
-    int upper_limit;
-    int lower_limit;
-    const char *source;
-    short int priority;
-    short int winner;
-} option_t;
-```
+
+
 
 
 # Remove/old
