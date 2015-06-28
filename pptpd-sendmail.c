@@ -17,6 +17,7 @@
 char pppd_version[] = VERSION;
 
 static char pptpd_original_ip[PATH_MAX+1];
+/* TODO remove pptpd_logwtmp_strip_domain */
 static bool pptpd_logwtmp_strip_domain = 0;
 
 static option_t options[] = {
@@ -44,23 +45,27 @@ static void ip_up(void *opaque, int arg)
 {
   char *user = reduce(peer_authname);
   if (debug)
-    notice("pptpd-logwtmp.so ip-up %s %s %s", ifname, user, 
+    /* notice - pppd.h; log a notice-level message */
+    notice("pptpd-sendmail.so ip-up %s %s %s", ifname, user, 
        pptpd_original_ip);
-  logwtmp(ifname, user, pptpd_original_ip);
+  /*logwtmp(ifname, user, pptpd_original_ip);*/
 }
 
 static void ip_down(void *opaque, int arg)
 {
   if (debug) 
-    notice("pptpd-logwtmp.so ip-down %s", ifname);
-  logwtmp(ifname, "", "");
+    /* notice - pppd.h; log a notice-level message */
+    notice("pptpd-sendmail.so ip-down %s", ifname);
+  /*logwtmp(ifname, "", "");*/
 }
 
 void plugin_init(void)
 {
+  printf("pptpd-sendmail: plugin_init\n");
   add_options(options);
   add_notifier(&ip_up_notifier, ip_up, NULL);
   add_notifier(&ip_down_notifier, ip_down, NULL);
   if (debug) 
-    notice("pptpd-logwtmp: $Version$");
+    /* notice - pppd.h; log a notice-level message */
+    notice("pptpd-sendmail: $Version$");
 }

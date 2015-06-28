@@ -32,11 +32,15 @@ run ```make```, this should create a pptpd-sendmail.so
 
 ## running
 
+Don't run ./pptpd-sendmail.so, it's a plugin and has no main.
+
 
 # TODO
 
-Git keyword expansion
-http://git-memo.readthedocs.org/en/latest/git_archive.html
+* create a test.c that includes pptpd-sendmail.c to run as a test
+* call sendmail from C (or call a script from C) http://stackoverflow.com/questions/2362989/how-can-i-send-e-mail-in-c
+* C options
+* Git keyword expansion http://git-memo.readthedocs.org/en/latest/git_archive.html
 
 
 
