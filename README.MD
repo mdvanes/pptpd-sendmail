@@ -4,6 +4,8 @@ Based on the only pptpd plugin I could find: https://github.com/chrisballinger/p
 
 Basically it's a modified copy of this plugin.
 
+Requires *sendmail* to be installed.
+
 
 # C development
 
@@ -34,15 +36,38 @@ run ```make```, this should create a pptpd-sendmail.so
 
 Don't run ./pptpd-sendmail.so, it's a plugin and has no main.
 
+Go to ```testing-sendmail``` and run ```make```. Then run ```./test```.
+
+
+## installation
+
+Follow instructions of pppd plugin installation.
+
 
 # TODO
 
 * create a test.c that includes pptpd-sendmail.c to run as a test
 * call sendmail from C (or call a script from C) http://stackoverflow.com/questions/2362989/how-can-i-send-e-mail-in-c
 * C options
+* complete instructions for installation
 * Git keyword expansion http://git-memo.readthedocs.org/en/latest/git_archive.html
 
 
+```
+typedef struct {
+    char    *name;      /* name of the option */
+    enum opt_type type;
+    void    *addr;
+    char    *description;
+    unsigned int flags;
+    void    *addr2;
+    int upper_limit;
+    int lower_limit;
+    const char *source;
+    short int priority;
+    short int winner;
+} option_t;
+```
 
 
 # Remove/old

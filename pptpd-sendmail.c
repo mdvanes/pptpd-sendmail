@@ -21,9 +21,14 @@ static char pptpd_original_ip[PATH_MAX+1];
 static bool pptpd_logwtmp_strip_domain = 0;
 
 static option_t options[] = {
-  { "pptpd-original-ip", o_string, pptpd_original_ip,
-    "Original IP address of the PPTP connection",
-    OPT_STATIC, NULL, PATH_MAX },
+  { "pptpd-original-ip",          /* name from pppd.h */
+    o_string,                     /* type */
+    pptpd_original_ip,            /* addr */
+    "Original IP address of the PPTP connection", /* description */
+    OPT_STATIC,                   /* flags */
+    NULL,                         /* addr2 */
+    PATH_MAX                      /* upper_limit */
+  },
   { "pptpd-logwtmp-strip-domain", o_bool, &pptpd_logwtmp_strip_domain,
     "Strip domain from username before logging", OPT_PRIO | 1 },
   { NULL }
