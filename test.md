@@ -23,10 +23,11 @@ or run ```make``` which will run the Makefile. This is very picky with indents; 
 
 There is a dependency with pppd.h.
 
-* Do a checkout of https://github.com/wkz/pppd/tree/master/pppd such that pppd.h is checked out relative to this file in pppd/pppd.h
-* one time: add pppd/ to .gitignore
+Running ```apt-file search pppd/pppd.h``` gives ```ppp-dev: /usr/include/pppd/pppd.h```
 
-run ```make```
+So do: ```sudo apt-get install ppp-dev```
+
+run ```make```, this should create a pptpd-sendmail.so
 
 
 ## running
@@ -36,3 +37,13 @@ run ```make```
 
 Git keyword expansion
 http://git-memo.readthedocs.org/en/latest/git_archive.html
+
+
+
+
+# Remove/old
+
+* Do a checkout of https://github.com/wkz/pppd/tree/master/pppd such that pppd.h is checked out relative to this file in pppd/pppd.h
+* one time: add pppd/ to .gitignore
+
+
