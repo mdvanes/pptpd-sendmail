@@ -1,18 +1,51 @@
+# pppdp-sendmail
+
 A plugin for pptpd that will send a mail when someone logs in / a client connects to pptpd
 
-Based on the only pptpd plugin I could find: https://github.com/chrisballinger/poptop/blob/master/plugins/pptpd-logwtmp.c
+Based on the only pptpd plugin I could find: [pptpd-logwtmp.c](https://github.com/chrisballinger/poptop/blob/master/plugins/pptpd-logwtmp.c)
 
 Basically it's a modified copy of this plugin.
 
-Requires *sendmail* to be installed.
+Requires **sendmail** to be installed.
 
 
-# C development
+### Installation
+
+Build by running ```make``` in this dir. This should result in a **pptpd-sendmail.so**.
+
+_Follow instructions of pppd plugin installation._?? Can't find?
+
+Place pptpd-sendmail.so in /etc/ppp/
+
+Make sure that pptpd-sendmail.properties exists in the same dir as pptpd-sendmail.so
+
+pptpd-sendmail.properties should contain the "to address":
+
+```
+to=example2@example.com
+```
+
+add plugin in /etc/ppp/pptpd-options (the value of "option" in /etc/pptpd.conf) at the bottom:
+```
+plugin pptpd-sendmail.so
+```
+
+restart the server:
+```/etc/init.d/pptpd restart```
+
+
+## TODO
+
+* issue: the body is now cut off and doesn't log the IP but it does log the "to" address, which it shouldn't.
+* complete instructions for installation
+* Git keyword expansion http://git-memo.readthedocs.org/en/latest/git_archive.html
+
+
+## C development
 
 The other plugin (pptpd-logwtmp) is written in C and I have zero experience in C, so I have some notes on building:
 
-
-## building - an introduction
+### building - an introduction
 
 introduction to Makefile: http://www.cs.colby.edu/maxwell/courses/tutorials/maketutor/
 
@@ -21,7 +54,7 @@ also, try to run ```gcc -o hellomake hellomake.c hellofunc.c -I.``` in the ```te
 or run ```make``` which will run the Makefile. This is very picky with indents; it must be 1 tab.
 
 
-## building - pptpd-logwtmp has a Makefile
+### building - pptpd-logwtmp has a Makefile
 
 There is a dependency with pppd.h.
 
@@ -32,16 +65,10 @@ So do: ```sudo apt-get install ppp-dev```
 run ```make```, this should create a pptpd-sendmail.so
 
 
-## running
+### running
 
 Don't run ./pptpd-sendmail.so, it's a plugin and has no main.
 
-Go to ```testing-sendmail``` and run ```make```. Then run ```./test```.
-
-
-## installation
-
-Follow instructions of pppd plugin installation.
 Make sure that pptpd-sendmail.properties exists in the same dir as pptpd-sendmail.so
 
 pptpd-sendmail.properties should contain the "to address":
@@ -50,23 +77,5 @@ pptpd-sendmail.properties should contain the "to address":
 to=example2@example.com
 ```
 
-
-# TODO
-
-* create a test.c that includes pptpd-sendmail.c to run as a test
-* call sendmail from C (or call a script from C) http://stackoverflow.com/questions/2362989/how-can-i-send-e-mail-in-c
-* C options
-* complete instructions for installation
-* Git keyword expansion http://git-memo.readthedocs.org/en/latest/git_archive.html
-
-
-
-
-
-
-# Remove/old
-
-* Do a checkout of https://github.com/wkz/pppd/tree/master/pppd such that pppd.h is checked out relative to this file in pppd/pppd.h
-* one time: add pppd/ to .gitignore
-
+Go to ```testing-sendmail``` and run ```make```. Then run ```./test```.
 
