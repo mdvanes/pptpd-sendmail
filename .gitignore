@@ -1,3 +1,5 @@
 /pppd/*
 pptpd-sendmail.so
 testing-sendmail/pptpd-sendmail.properties
+/pptpd-sendmail.sublime-project
+/pptpd-sendmail.sublime-workspace
