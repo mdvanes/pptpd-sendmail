@@ -11,9 +11,13 @@ Requires **sendmail** to be installed.
 
 ### Installation
 
+There is a dependency with pppd.h.
+
+```sudo apt-get install ppp-dev```
+
 Build by running ```make``` in this dir. This should result in a **pptpd-sendmail.so**.
 
-_Follow instructions of pppd plugin installation._?? Can't find?
+_Follow instructions of pppd plugin installation._?? Can't find documentation?
 
 Place pptpd-sendmail.so in /etc/ppp/
 
@@ -31,12 +35,14 @@ plugin pptpd-sendmail.so
 ```
 
 restart the server:
-```/etc/init.d/pptpd restart```
+```sudo /etc/init.d/pptpd restart```
 
 
 ## TODO
 
 * issue: the body is now cut off and doesn't log the IP but it does log the "to" address, which it shouldn't.
+* when building a lot of errors are logged that are not logged with the same functions in test.c
+* make a library of the functions that can be called from both test.c and pptpd-sendmail.c
 * complete instructions for installation
 * Git keyword expansion http://git-memo.readthedocs.org/en/latest/git_archive.html
 
